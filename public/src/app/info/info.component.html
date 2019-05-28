@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+    <h1>Baked by {{getCakeInfo.name}}</h1>
+    <img [src] = "getCakeInfo.image_url" alt ="cake picture" style="height: 300px; width: 500px;">
+    </div>
+    <div class="col-lg-6">
+      <h1>Reviews</h1>
+      <p>Average: {{average}}</p>
+      <div *ngFor="let review of getCakeInfo.reviews">
+        <p>{{review['comment']}}</p>
+        <p>{{review['rating']}} stars</p>
+      </div>
+    </div>
+  </div>
+</div>

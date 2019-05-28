@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-dark">
+      <h1 style="color:white">Rate My Cakes</h1>
+    </nav><br>
+    <div class="container">
+      <div class="row">
+          <div class="col-lg-4">
+            <h3>Submit a cake to be rated</h3>
+            <form (submit) = "onSubmit()">
+              <p>Baker name: <input class="form-control" type="text" name ="newCake.name" [(ngModel)] = "newCake.name"></p>
+              <p>Image url: <input class="form-control" type="text" name ="newCake.image_url"[(ngModel)] = "newCake.image_url" ></p>
+              <input class="btn btn-primary" type="Submit" value = "Submit">
+            </form>
+          </div>
+          <div class="col-lg-8" style="overflow:scroll; height: 500px;">
+            <div *ngFor ="let cake of cakes">
+              <img (click)="getCakeInfo(cake)" [src] = "cake.image_url" alt ="cake picture" style="height: 300px; width: 300px; margin: 10px;">
+              <div style="display: inline-block; vertical-align:top;">
+                <form (ngSubmit) = "onReviewSubmit(cake['_id'])">
+                  <select name="newReview.rating" [(ngModel)] = "newReview.rating">
+                    <option value="5">5 stars</option>
+                    <option value="4">4 stars</option>
+                    <option value="3">3 stars</option>
+                    <option value="2">2 stars</option>
+                    <option value="1">1 star</option>
+                  </select><br>
+                  <br><textarea class="form-control" rows="2" cols="40" [(ngModel)] = "newReview.comment" name = "newReview.comment"  placeholder="Type your comment here"></textarea>
+                  <br><input type="submit" value = "Rate!" class="btn btn-primary"><br><br>
+                </form>
+            </div>
+            </div>
+          </div>
+      </div>
+      <app-info *ngIf="selectedCake" [getCakeInfo] = "selectedCake"></app-info>
+    </div>
+  </body>
+</html>
+
+
+<router-outlet></router-outlet>
