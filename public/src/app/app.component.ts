@@ -31,6 +31,7 @@ export class AppComponent implements OnInit{
     let observable = this._httpService.getCakes()
     observable.subscribe(data => {
       console.log("Got our data!", data);
+      this.cakes=data['cakes'];
     })
   }
 
@@ -40,6 +41,7 @@ export class AppComponent implements OnInit{
       this.reviews = data['reviews'];
     })
   }
+  
 
   getCakeInfo(cake){
     this.selectedCake = cake;
